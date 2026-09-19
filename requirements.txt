@@ -1,0 +1,3 @@
+# The application itself runs on the Python standard library only ($0 budget constraint).
+# Everything below is development and test tooling.
+pytest>=8.0

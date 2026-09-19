@@ -1,0 +1,7 @@
+# Normalise line endings on checkout; keep binaries untouched.
+* text=auto eol=lf
+*.docx binary
+*.xlsx binary
+*.png binary
+*.jpg binary
+*.pdf binary

@@ -1,0 +1,33 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Test / coverage output
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Database and local data — never commit member data
+*.db
+*.sqlite
+*.sqlite3
+data/
+*.csv
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build artefacts
+build/
+dist/
+*.egg-info/
