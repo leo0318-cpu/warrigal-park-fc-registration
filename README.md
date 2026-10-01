@@ -63,6 +63,10 @@ warrigal-park-fc-registration/
 ├─ docs/                    Planning documents (WBS 1.1–1.3)
 │  └─ original/             The four signed-off planning documents
 ├─ .github/                 Pull-request and issue templates, CI workflow
+├─ config.env.template      Every setting the application understands (committed)
+├─ config.env               Local values — git-ignored, never committed
+├─ deploy.sh                Clean clone → running application, one command (POSIX)
+├─ deploy.bat               The same, for Windows
 ├─ CONTRIBUTING.md          Branch strategy, commit convention, review rules
 ├─ pyproject.toml           Package metadata and pytest configuration
 └─ CHANGELOG.md             What changed and when
@@ -77,6 +81,19 @@ warrigal-park-fc-registration/
 
 ### Clean checkout
 
+The supported route is one command:
+
+```bash
+sh deploy.sh          # POSIX
+deploy.bat            # Windows
+```
+
+It creates the virtual environment, installs the pinned tooling, creates `config.env`
+from the template if one is not already present, runs the smoke check and runs the test
+suite. It never overwrites an existing `config.env`.
+
+To do the same steps by hand:
+
 ```bash
 git clone <repository-url>
 cd warrigal-park-fc-registration
@@ -84,6 +101,7 @@ python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt  # dev/test tooling only — no runtime dependencies
 pip install -e .                 # makes `python -m warrigal` resolve from the source tree
+cp config.env.template config.env
 python -m warrigal --help
 ```
 
@@ -129,13 +147,13 @@ decision log are updated. Full detail: `docs/07-definition-of-done.md`.
 
 | Name | Role | SCU email |
 | --- | --- | --- |
-| Cao Yang | Project Manager | _to be added_ |
-| Chen Shuai | Business / Requirements Lead + Scribe | _to be added_ |
-| Zhang Runze | Technical Lead | _to be added_ |
+| Cao Yang | Project Manager | yang.cao@student.scu.edu.au |
+| Chen Shuai | Business / Requirements Lead + Scribe | shuai.chen@student.scu.edu.au |
+| Zhang Runze | Technical Lead | runze.zhang@student.scu.edu.au |
 | Zhou Kunpeng | Scheduling Lead | k.zhou.14@student.scu.edu.au |
 
-> Add each member's SCU email here and in Jira before the first pull request, so that GitHub and
-> Jira attribute contributions to the right person.
+> These are the addresses used to attribute work in Jira and in the commit history. Every
+> member commits under their own name; no one commits on another member's behalf.
 
 ## Milestones
 

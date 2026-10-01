@@ -9,6 +9,11 @@ The project has not been released yet; versions track the milestone reached.
 - Jira product backlog: 2 epics, 13 user stories with acceptance criteria, 17 WBS tasks.
 - Definition of Done (7 criteria) and the decision log (7 decisions).
 - Risk register with 6 risks including the A2/A3 deadline exposure.
+- `config.env.template` — the canonical list of settings the application understands.
+- `deploy.sh` and `deploy.bat` — one command from a clean clone to a running application,
+  supporting the clean-checkout verification in WBS 5.3.
+- `config.env` added to `.gitignore`, so local values cannot be committed by accident.
+- Team SCU email addresses recorded in the README for contribution attribution.
 
 ## [2026-09-22] — Planning phase complete (M2)
 

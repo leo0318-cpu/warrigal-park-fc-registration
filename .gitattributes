@@ -1,5 +1,7 @@
 # Normalise line endings on checkout; keep binaries untouched.
 * text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
 *.docx binary
 *.xlsx binary
 *.png binary
