@@ -58,7 +58,10 @@ merchandise. These sit in the product backlog and are deliberately not built.
 
 ```
 warrigal-park-fc-registration/
-├─ src/warrigal/            Application package (implementation lands in Sprints 1–2)
+├─ src/warrigal/            Application package
+│  ├─ db.py                 SQLite connection, schema and migrations (WBS 4.1)
+│  ├─ member.py             Member CRUD, validation and the age rule (WBS 4.1)
+│  └─ views.py              Roster, history and guardian-juniors views (WBS 4.5)
 ├─ tests/                   Automated tests (WBS 5.1–5.3)
 ├─ docs/                    Planning documents (WBS 1.1–1.3)
 │  └─ original/             The four signed-off planning documents
@@ -113,6 +116,35 @@ python -m pytest -q
 
 > **Definition of Done, criterion 5:** this must work from a fresh clone on a machine that has
 > never seen the project. If it does not, the story is not done.
+
+## Using it
+
+The register lives in a SQLite file. Its path comes from `WARRIGAL_DB_PATH` (default
+`data/warrigal.db`); the file and its schema are created on first use, so there is no setup step.
+
+```bash
+# Members (WBS 4.1)
+python -m warrigal member add --given-name Ana --family-name Nguyen --date-of-birth 2015-06-01
+python -m warrigal member find --family-name nguyen        # partial, case-insensitive
+python -m warrigal member find --family-name nguyen --include-inactive
+python -m warrigal member show 1
+python -m warrigal member update 1 --contact-number "0400 000 000"
+python -m warrigal member deactivate 1                     # never deleted (D-06)
+python -m warrigal member reactivate 1
+
+# Views (WBS 4.5)
+python -m warrigal view roster          # every placement; add a team id for one team
+python -m warrigal view history 1       # every season, newest first
+python -m warrigal view juniors 1       # the members linked to guardian 1
+```
+
+Exit statuses let a script tell the outcomes apart: `0` succeeded (an empty search or an
+empty roster is a success), `2` refused, `3` a possible duplicate was found and nothing was
+saved — repeat with `--confirm-duplicate` to save anyway.
+
+**Guardian, registration and team data is not built yet.** Those tables belong to WBS 4.2,
+4.3 and 4.4. Until they land, `view roster`, `view history` and `view juniors` print which
+work package they are waiting for rather than crashing or showing invented rows.
 
 ## Development workflow
 

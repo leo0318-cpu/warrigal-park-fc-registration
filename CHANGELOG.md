@@ -6,6 +6,19 @@ The project has not been released yet; versions track the milestone reached.
 ## [Unreleased] — Sprint 1
 
 ### Added
+- **WBS 4.1 — Member CRUD** (`src/warrigal/member.py`, `src/warrigal/db.py`): create, find by
+  partial family name, update, deactivate and reactivate, persisted in SQLite through the
+  standard library so the $0 budget constraint holds with no third-party dependency. Search
+  disambiguates by date of birth rather than by name; members are deactivated rather than
+  deleted so registration history survives (D-06); validation names every failing field in a
+  single message.
+- **WBS 4.5 — Views** (`src/warrigal/views.py`): a team roster with contacts (a member under
+  18 shows the linked guardian's number), a member's registration history across all seasons,
+  and the juniors linked to a guardian. Each view discovers whether the tables owned by work
+  packages 4.2–4.4 exist yet and, when one is missing, says so explicitly instead of guessing.
+- Command line: `member add|find|show|update|deactivate|reactivate|roster-check` and
+  `view roster|history|juniors`.
+- 77 automated tests covering the US-01 to US-04 and US-11 to US-13 acceptance criteria.
 - Jira product backlog: 2 epics, 13 user stories with acceptance criteria, 17 WBS tasks.
 - Definition of Done (7 criteria) and the decision log (7 decisions).
 - Risk register with 6 risks including the A2/A3 deadline exposure.
